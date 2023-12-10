@@ -1,17 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 #Import Libraries
 import pandas as pd
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderServiceError
-
-
-# In[ ]:
-
 
 #Reads SD County CBO address data into DataFrame
 df = pd.read_excel('SDCounty_CBO.xlsx')
@@ -39,16 +32,5 @@ df['Coordinates'] = df['Address_Abr'].apply(lambda x: geocode_with_retry(x))
 # Splits coordinates into separate 'Latitude' and 'Longitude' columns
 df[['Latitude', 'Longitude']] = pd.DataFrame(df['Coordinates'].tolist(), index=df.index)
 
-
-# In[ ]:
-
-
 #Saves new dataframe to output excel sheet
 df.to_excel('SDCounty_CBO.xlsx')
-
-
-# In[ ]:
-
-
-
-
